@@ -1,5 +1,9 @@
 const FavoriteCities = () => {
-  return <>Save your first city</>
+  return (
+    <div className="fav">
+      <button onClick={onSaveFavorite}>Save as Favorite</button>
+    </div>
+  )
 }
 
 export default FavoriteCities

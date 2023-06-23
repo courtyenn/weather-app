@@ -17,15 +17,15 @@ function App() {
   }
 
   return (
-    <div>
-      <>
-        <SearchBar onSearch={onSearch} />
-        {loadingCurrent || !currentWeather ? (
-          "Loading..."
-        ) : (
-          <WeatherStats {...currentWeather} />
-        )}
-      </>
+    <div className="container">
+      <SearchBar onSearch={onSearch} />
+      {loadingCurrent || !currentWeather ? (
+        "Loading..."
+      ) : (
+        <WeatherStats {...currentWeather} />
+      )}
+
+      <FavoriteCities />
     </div>
   )
 }

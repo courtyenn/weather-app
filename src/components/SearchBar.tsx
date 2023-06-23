@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   }
 
   return (
-    <div>
+    <div className="search">
       <input
         type="text"
         placeholder="Enter city name"

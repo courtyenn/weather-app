@@ -3,7 +3,7 @@ import { WeatherResponseType } from "../api"
 const WeatherStats = ({ name, weather, main, wind }: WeatherResponseType) => {
   const firstWeather = weather[0]
   return (
-    <div>
+    <div className="content">
       <h1>{name}</h1>
       <p></p>
       <p>Temperature: {main.temp}°F</p>
@@ -13,7 +13,6 @@ const WeatherStats = ({ name, weather, main, wind }: WeatherResponseType) => {
         src={`https://openweathermap.org/img/w/${firstWeather.icon}.png`}
         alt="Weather Icon"
       />
-      <button>Save as Favorite</button>
     </div>
   )
 }
