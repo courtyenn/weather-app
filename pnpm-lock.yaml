@@ -40,6 +40,9 @@ devDependencies:
   '@vitejs/plugin-react':
     specifier: ^4.0.0
     version: 4.0.0(vite@4.3.9)
+  core:
+    specifier: link:@types/@hyper-fetch/core
+    version: link:@types/@hyper-fetch/core
   eslint:
     specifier: ^8.38.0
     version: 8.38.0

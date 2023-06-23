@@ -1,26 +1,26 @@
-import React from "react";
+import React from "react"
+import { WeatherResponseType } from "../api"
 
-interface WeatherStatsProps {
-  weather: {
-    temperature: number;
-    humidity: number;
-    windSpeed: number;
-    icon: string;
-  };
-}
-
-const WeatherStats: React.FC<WeatherStatsProps> = ({ weather }) => {
+const WeatherStats: React.FC = ({
+  name,
+  weather,
+  main,
+  wind,
+}: WeatherResponseType) => {
+  const firstWeather = weather[0]
   return (
     <div>
-      <p>Temperature: {weather.temperature}°C</p>
-      <p>Humidity: {weather.humidity}%</p>
-      <p>Wind Speed: {weather.windSpeed} km/h</p>
+      <h1>{name}</h1>
+      <p></p>
+      <p>Temperature: {main.temp}°F</p>
+      <p>Humidity: {main.humidity}%</p>
+      <p>Wind Speed: {wind.speed} km/h</p>
       <img
-        src={`https://openweathermap.org/img/w/${weather.icon}.png`}
+        src={`https://openweathermap.org/img/w/${firstWeather.icon}.png`}
         alt="Weather Icon"
       />
     </div>
-  );
-};
+  )
+}
 
-export default WeatherStats;
+export default WeatherStats

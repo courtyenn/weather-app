@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 interface SearchBarProps {
-  onSearch: (city: string) => void;
+  onSearch: (city: string) => void
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("")
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value);
-  };
+    setCity(event.target.value)
+  }
 
   const handleSearch = () => {
-    onSearch(city);
-    setCity("");
-  };
+    onSearch(city)
+    setCity("")
+  }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      handleSearch();
+      handleSearch()
     }
-  };
+  }
 
   return (
     <div>
@@ -29,11 +29,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         placeholder="Enter city name"
         value={city}
         onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
       />
       <button onClick={handleSearch}>Search</button>
     </div>
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar
