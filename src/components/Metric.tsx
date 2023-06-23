@@ -35,10 +35,10 @@ const Metric = ({ city }) => {
   return (
     <div className="metric">
       <button onClick={onFetchClick}>
-        Measure perf of fetch API - {fetchMetric}ms 100 requests
+        Measure perf of fetch API - {fetchMetric}ms / 100 requests
       </button>
       <button onClick={onHyperClick}>
-        Measure perf of hyper-fetch API - {hyperMetric}ms 100 requests
+        Measure perf of hyper-fetch API - {hyperMetric}ms / 100 requests
       </button>
     </div>
   )
