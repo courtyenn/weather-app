@@ -1,18 +1,18 @@
-import React from "react";
+import React from "react"
 
 interface ForecastProps {
   forecast: {
-    date: string;
-    icon: string;
-    highTemp: number;
-    lowTemp: number;
-  }[];
+    date: string
+    icon: string
+    highTemp: number
+    lowTemp: number
+  }[]
 }
 
-const Forecast: React.FC<ForecastProps> = ({ forecast }) => {
+const Forecast: React.FC<ForecastProps> = () => {
   return (
     <div>
-      {forecast.map((day) => (
+      {/* {forecast.map((day) => (
         <div key={day.date}>
           <p>Date: {day.date}</p>
           <p>High: {day.highTemp}°C</p>
@@ -22,9 +22,9 @@ const Forecast: React.FC<ForecastProps> = ({ forecast }) => {
             alt="Weather Icon"
           />
         </div>
-      ))}
+      ))} */}
     </div>
-  );
-};
+  )
+}
 
-export default Forecast;
+export default Forecast

@@ -1,12 +1,6 @@
-import React from "react"
 import { WeatherResponseType } from "../api"
 
-const WeatherStats: React.FC = ({
-  name,
-  weather,
-  main,
-  wind,
-}: WeatherResponseType) => {
+const WeatherStats = ({ name, weather, main, wind }: WeatherResponseType) => {
   const firstWeather = weather[0]
   return (
     <div>
@@ -19,6 +13,7 @@ const WeatherStats: React.FC = ({
         src={`https://openweathermap.org/img/w/${firstWeather.icon}.png`}
         alt="Weather Icon"
       />
+      <button>Save as Favorite</button>
     </div>
   )
 }

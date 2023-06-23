@@ -1,31 +1,31 @@
 import "./App.css"
 import SearchBar from "./components/SearchBar"
 import WeatherStats from "./components/WeatherStats"
-import Forecast from "./components/Forecast"
 import { getCityWeather } from "./api"
 import { useState } from "react"
 import { useFetch } from "@hyper-fetch/react"
+import FavoriteCities from "./components/FavoriteCities"
 
 function App() {
-  const [weather, setWeather] = useState("Salt Lake City")
-  const { loading, data } = useFetch(getCityWeather(weather))
+  const [city, setCity] = useState("Salt Lake City")
+  const { loading: loadingCurrent, data: currentWeather } = useFetch(
+    getCityWeather(city)
+  )
 
   const onSearch = (city: string) => {
-    setWeather(city)
+    setCity(city)
   }
-  console.log(loading, data)
 
   return (
     <div>
-      {loading || !data ? (
-        "Loading..."
-      ) : (
-        <>
-          <SearchBar onSearch={onSearch} />
-          <WeatherStats {...data} />
-          {/* <Forecast /> */}
-        </>
-      )}
+      <>
+        <SearchBar onSearch={onSearch} />
+        {loadingCurrent || !currentWeather ? (
+          "Loading..."
+        ) : (
+          <WeatherStats {...currentWeather} />
+        )}
+      </>
     </div>
   )
 }

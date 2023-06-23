@@ -14,6 +14,7 @@
   "dependencies": {
     "@hyper-fetch/core": "^5.1.2",
     "@hyper-fetch/react": "^5.1.2",
+    "idb-keyval": "^6.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -34,5 +35,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "vitest": "^0.32.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

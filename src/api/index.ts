@@ -1,9 +1,7 @@
-import { Client } from "@hyper-fetch/core"
+// I am getting an issue where VSCode is unable to pickup the declarations here
+//@ts-ignore @hyper-fetch/core declaration module could not be found?
+import { Client, Cache } from "@hyper-fetch/core"
 
-type PayloadType = {
-  q: string
-  appid: string
-}
 type Weather = {
   id: number
   main: string
@@ -36,9 +34,9 @@ export const client: Client = new Client({
   url: `/api`,
 })
 
-export const getCityWeather = (city = "Salt Lake City") => {
-  return client
-    .createRequest<WeatherResponseType, void, void, PayloadType>()({
+export const getCityWeather = (city: string) =>
+  client
+    .createRequest()({
       endpoint: "/data/2.5/weather",
     })
     .setQueryParams({
@@ -46,4 +44,24 @@ export const getCityWeather = (city = "Salt Lake City") => {
       units: "imperial",
       appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
     })
-}
+
+export const get5DayForecast = (city: string) =>
+  client
+    .createRequest()({
+      endpoint: "/data/2.5/forecast/daily",
+    })
+    .setQueryParams({
+      q: city,
+      units: "imperial",
+      appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
+    })
+
+export const getCoordinatesByLocationName = (city: string) =>
+  client
+    .createRequest()({
+      endpoint: "/geo/1.0/direct",
+    })
+    .setQueryParams({
+      q: city,
+      appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
+    })
