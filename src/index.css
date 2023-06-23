@@ -75,4 +75,12 @@ button:focus-visible {
 
 .fav {
   grid-area: fav;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.favorite {
+  background-color: transparent;
+  border: 1px solid #f2f2f2;
 }

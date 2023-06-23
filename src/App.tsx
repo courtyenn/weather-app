@@ -25,7 +25,7 @@ function App() {
         <WeatherStats {...currentWeather} />
       )}
 
-      <FavoriteCities />
+      <FavoriteCities onSearch={onSearch} {...currentWeather} />
     </div>
   )
 }
