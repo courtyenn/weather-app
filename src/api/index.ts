@@ -28,6 +28,8 @@ export type WeatherResponseType = {
     humidity: number
     pressure: number
   }
+  dt: number
+  timezone: number
 }
 
 export const client: Client = new Client({
