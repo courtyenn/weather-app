@@ -5,6 +5,7 @@ import { getCityWeather } from "./api"
 import { useState } from "react"
 import { useFetch } from "@hyper-fetch/react"
 import FavoriteCities from "./components/FavoriteCities"
+import Metric from "./components/Metric"
 
 const DEFAULT_CITY = "Salt Lake City"
 function App() {
@@ -13,7 +14,9 @@ function App() {
     loading: loadingCurrent,
     data: currentWeather,
     error,
-  } = useFetch(getCityWeather(city))
+  } = useFetch(getCityWeather(city), {
+    dependencies: [city],
+  })
   const onSearch = (city: string) => {
     setCity(city)
   }
@@ -29,11 +32,12 @@ function App() {
 
       {error && (
         <code className="content error">
-          An error occured searching for "{city}". Please try again.
+          An error occurred searching for "{city}". Please try again.
         </code>
       )}
 
       <FavoriteCities onSearch={onSearch} {...currentWeather} />
+      {currentWeather && <Metric city={`${currentWeather.name}`} />}
     </div>
   )
 }

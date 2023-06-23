@@ -38,6 +38,7 @@ export const getCityWeather = (city: string) =>
   client
     .createRequest()({
       endpoint: "/data/2.5/weather",
+      deduplicate: true,
     })
     .setQueryParams({
       q: city,
@@ -45,20 +46,35 @@ export const getCityWeather = (city: string) =>
       appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
     })
 
-export const get5DayForecast = (city: string) =>
+export const fetchCityWeather = (city: string) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${city}&appid=${
+      import.meta.env.VITE_OPENWEATHER_API_KEY
+    }`
+  )
+}
+
+export const get5DayForecast = ({ lat, lon }: { lat: number; lon: number }) =>
   client
     .createRequest()({
-      endpoint: "/data/2.5/forecast/daily",
+      endpoint: "/data/3.0/onecall",
     })
     .setQueryParams({
-      q: city,
+      lat,
+      lon,
+      exclude: "current,minutely,hourly",
       units: "imperial",
       appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
     })
 
+type GeoLocationCityResponse = {
+  lat: number
+  lon: number
+  name: number
+}
 export const getCoordinatesByLocationName = (city: string) =>
   client
-    .createRequest()({
+    .createRequest<GeoLocationCityResponse>()({
       endpoint: "/geo/1.0/direct",
     })
     .setQueryParams({
