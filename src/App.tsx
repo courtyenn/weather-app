@@ -6,12 +6,14 @@ import { useState } from "react"
 import { useFetch } from "@hyper-fetch/react"
 import FavoriteCities from "./components/FavoriteCities"
 
+const DEFAULT_CITY = "Salt Lake City"
 function App() {
-  const [city, setCity] = useState("Salt Lake City")
-  const { loading: loadingCurrent, data: currentWeather } = useFetch(
-    getCityWeather(city)
-  )
-
+  const [city, setCity] = useState(DEFAULT_CITY)
+  const {
+    loading: loadingCurrent,
+    data: currentWeather,
+    error,
+  } = useFetch(getCityWeather(city))
   const onSearch = (city: string) => {
     setCity(city)
   }
@@ -20,9 +22,15 @@ function App() {
     <div className="container">
       <SearchBar onSearch={onSearch} />
       {loadingCurrent || !currentWeather ? (
-        "Loading..."
+        !error && "Loading..."
       ) : (
         <WeatherStats {...currentWeather} />
+      )}
+
+      {error && (
+        <code className="content error">
+          An error occured searching for "{city}". Please try again.
+        </code>
       )}
 
       <FavoriteCities onSearch={onSearch} {...currentWeather} />
